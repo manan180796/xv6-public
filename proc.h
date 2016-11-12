@@ -38,7 +38,7 @@ extern struct proc *proc asm("%gs:4");     // cpus[cpunum()].proc
 // The layout of the context matches the layout of the stack in swtch.S
 // at the "Switch stacks" comment. Switch doesn't save eip explicitly,
 // but it is on the stack and allocproc() manipulates it.
-struct context {
+struct context{
   uint edi;
   uint esi;
   uint ebx;
@@ -63,6 +63,7 @@ struct proc {
   struct file *ofile[NOFILE];  // Open files
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
+  int ctime, etime, rtime;     // creation-time, End-time, Run-time
 };
 
 // Process memory is laid out contiguously, low addresses first:
